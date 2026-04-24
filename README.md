@@ -47,6 +47,7 @@ rifuki-deploy init
 Then validate and start the stack:
 
 ```bash
+rifuki-deploy version
 rifuki-deploy doctor
 rifuki-deploy up
 rifuki-deploy health --production --domain rifuki.dev
@@ -80,6 +81,8 @@ If the selected path is empty or missing, the CLI can clone `rifuki/rifuki.dev` 
 | --- | --- |
 | `rifuki-deploy` | Show help. Use `rifuki-deploy init` for setup. |
 | `rifuki-deploy init` | Generate deployment config with guided prompts. |
+| `rifuki-deploy version` | Show local binary version, embedded Git SHA, and latest public release SHA. |
+| `rifuki-deploy version --offline` | Show local binary metadata without checking GitHub. |
 | `rifuki-deploy configure` | Edit existing config, secrets, env files, ports, and provider models. |
 | `rifuki-deploy update` | Download and install the latest CLI binary from the public release. |
 | `rifuki-deploy up` | Start the Docker Compose stack in detached mode. |
@@ -116,6 +119,7 @@ Each release publishes:
 
 - `rifuki-deploy` - Linux x86_64 static binary
 - `install.sh` - installer that downloads the matching binary
+- `version.json` - release metadata used by `rifuki-deploy version`
 
 ## Requirements
 
