@@ -84,6 +84,7 @@ If the selected path is empty or missing, the CLI can clone `rifuki/rifuki.dev` 
 | `rifuki-deploy version` | Show local binary version, embedded Git SHA, and latest public release SHA. |
 | `rifuki-deploy version --offline` | Show local binary metadata without checking GitHub. |
 | `rifuki-deploy configure` | Edit existing config, secrets, env files, ports, and provider models. |
+| `rifuki-deploy repair` | Repair obviously invalid generated config values. |
 | `rifuki-deploy update` | Download and install the latest CLI binary from the public release. |
 | `rifuki-deploy up` | Start the Docker Compose stack in detached mode. |
 | `rifuki-deploy down` | Stop and remove the Docker Compose stack. |
