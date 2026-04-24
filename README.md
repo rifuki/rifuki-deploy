@@ -58,8 +58,11 @@ When started outside the project, `rifuki-deploy` looks for the project in this 
 2. Parent directory
 3. `RIFUKI_DEV_DIR`
 4. `~/apps/rifuki.dev`
-5. `~/rifuki.dev`
-6. `~/mgodonf/web2/rifuki.dev`
+5. `~/app/rifuki.dev`
+6. `~/rifuki.dev`
+7. `~/mgodonf/web2/rifuki.dev`
+
+If the selected path is empty or missing, the CLI can clone `rifuki/rifuki.dev` for you. That repository is private, so the VPS must already be authenticated with GitHub and have access to the repo.
 
 ## What It Does
 
@@ -77,6 +80,7 @@ When started outside the project, `rifuki-deploy` looks for the project in this 
 | --- | --- |
 | `rifuki-deploy` | Run interactive setup. Same as `rifuki-deploy init`. |
 | `rifuki-deploy init` | Generate deployment config with guided prompts. |
+| `rifuki-deploy update` | Download and install the latest CLI binary from the public release. |
 | `rifuki-deploy doctor` | Validate project files, generated config, Docker, and service setup. |
 | `rifuki-deploy health` | Check local services and AI provider availability. |
 | `rifuki-deploy health --production --domain rifuki.dev` | Check production web, API, and agent endpoints. |
