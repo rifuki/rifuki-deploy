@@ -74,6 +74,7 @@ If the selected path is empty or missing, the CLI can clone `rifuki/rifuki.dev` 
 - Configures OpenRouter, Ollama, and Groq provider credentials
 - Checks local and production service health
 - Provides shortcuts for Docker Compose up, down, status, logs, and restarts
+- Exports and imports deployment config backups for VPS migration or recovery
 
 ## Commands
 
@@ -85,6 +86,11 @@ If the selected path is empty or missing, the CLI can clone `rifuki/rifuki.dev` 
 | `rifuki-deploy version --offline` | Show local binary metadata without checking GitHub. |
 | `rifuki-deploy configure` | Edit existing config, secrets, env files, ports, and provider models. |
 | `rifuki-deploy repair` | Repair obviously invalid generated config values. |
+| `rifuki-deploy export` | Export generated config, env, secrets, and compose override files to `rifuki-deploy-backup.json`. |
+| `rifuki-deploy export --output ~/rifuki-deploy-backup.json` | Export backup JSON to a custom file. |
+| `rifuki-deploy export --stdout` | Print raw backup JSON for piping or copying. |
+| `rifuki-deploy import ~/rifuki-deploy-backup.json` | Restore backup JSON into the detected project directory. |
+| `rifuki-deploy import --stdin --yes < ~/rifuki-deploy-backup.json` | Restore raw backup JSON from stdin without confirmation. |
 | `rifuki-deploy update` | Download and install the latest CLI binary from the public release. |
 | `rifuki-deploy up` | Start the Docker Compose stack in detached mode. |
 | `rifuki-deploy down` | Stop and remove the Docker Compose stack. |
@@ -113,6 +119,32 @@ Runtime config lives in `config/*.toml`. Service `.env` files are optional one-o
 | `miku-agent/config/local.toml` | Agent runtime overrides and provider priority. |
 | `miku-agent/config/secret.toml` | AI provider API keys. |
 | `docker-compose.override.yml` | Production Docker Compose overrides. |
+
+## Backup and Restore
+
+Use `export` before moving VPS, reinstalling the repo, or changing generated config heavily:
+
+```bash
+cd ~/apps/rifuki.dev
+rifuki-deploy export --output ~/rifuki-deploy-backup.json
+```
+
+The backup is JSON text and contains raw secrets from `secret.toml` and `.env` files. Keep it private and do not commit it.
+
+Restore from a file:
+
+```bash
+cd ~/apps/rifuki.dev
+rifuki-deploy import ~/rifuki-deploy-backup.json
+```
+
+Restore from raw/stdin:
+
+```bash
+cat ~/rifuki-deploy-backup.json | rifuki-deploy import --stdin --yes
+```
+
+The backup stores relative paths only, such as `rifuki-server/config/secret.toml` and `docker-compose.override.yml`. Import writes those files under the project directory detected by `rifuki-deploy`, so the same backup can be restored after cloning the repo into a different path.
 
 ## Release Assets
 
