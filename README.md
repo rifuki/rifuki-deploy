@@ -100,6 +100,8 @@ If the selected path is empty or missing, the CLI can clone `rifuki/rifuki.dev` 
 
 Supported services for restart/logs are `rifuki-server`, `miku-agent`, `rifuki-www`, or `all` where applicable.
 
+Runtime config lives in `config/*.toml`. Service `.env` files are optional one-off overrides only; use `RIFUKI__SECTION__KEY` for `rifuki-server` and `MIKU__SECTION__KEY` for `miku-agent`.
+
 ## Generated Files
 
 `rifuki-deploy init` writes deployment-specific files into the project:
