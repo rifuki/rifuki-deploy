@@ -48,7 +48,7 @@ Then validate and start the stack:
 
 ```bash
 rifuki-deploy doctor
-docker compose up -d
+rifuki-deploy up
 rifuki-deploy health --production --domain rifuki.dev
 ```
 
@@ -70,17 +70,20 @@ If the selected path is empty or missing, the CLI can clone `rifuki/rifuki.dev` 
 - Builds a `docker-compose.override.yml` for deployment-specific overrides
 - Supports full VPS deployment or web-on-Vercel deployment
 - Configures Last.fm credentials when needed
-- Configures OpenRouter, Groq, and Ollama provider credentials
+- Configures OpenRouter, Ollama, and Groq provider credentials
 - Checks local and production service health
-- Provides shortcuts for Docker Compose status, logs, and restarts
+- Provides shortcuts for Docker Compose up, down, status, logs, and restarts
 
 ## Commands
 
 | Command | Purpose |
 | --- | --- |
-| `rifuki-deploy` | Run interactive setup. Same as `rifuki-deploy init`. |
+| `rifuki-deploy` | Show help. Use `rifuki-deploy init` for setup. |
 | `rifuki-deploy init` | Generate deployment config with guided prompts. |
+| `rifuki-deploy configure` | Edit existing config, secrets, env files, ports, and provider models. |
 | `rifuki-deploy update` | Download and install the latest CLI binary from the public release. |
+| `rifuki-deploy up` | Start the Docker Compose stack in detached mode. |
+| `rifuki-deploy down` | Stop and remove the Docker Compose stack. |
 | `rifuki-deploy doctor` | Validate project files, generated config, Docker, and service setup. |
 | `rifuki-deploy health` | Check local services and AI provider availability. |
 | `rifuki-deploy health --production --domain rifuki.dev` | Check production web, API, and agent endpoints. |
