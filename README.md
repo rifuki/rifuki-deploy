@@ -31,7 +31,14 @@ mv rifuki-deploy ~/.local/bin/
 
 ## Quick Start
 
-Run the interactive setup from the `rifuki.dev` project directory:
+Clone or keep the site repo under the VPS app convention:
+
+```bash
+mkdir -p ~/apps
+cd ~/apps/rifuki.dev
+```
+
+Run the interactive setup:
 
 ```bash
 rifuki-deploy init
@@ -44,6 +51,15 @@ rifuki-deploy doctor
 docker compose up -d
 rifuki-deploy health --production --domain rifuki.dev
 ```
+
+When started outside the project, `rifuki-deploy` looks for the project in this order:
+
+1. Current directory
+2. Parent directory
+3. `RIFUKI_DEV_DIR`
+4. `~/apps/rifuki.dev`
+5. `~/rifuki.dev`
+6. `~/mgodonf/web2/rifuki.dev`
 
 ## What It Does
 
